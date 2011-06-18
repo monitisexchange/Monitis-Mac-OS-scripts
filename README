@@ -1,0 +1,30 @@
+Example of recording load averages to Monitis using shell scripts os OS X
+
+These are based on the original bash example scripts, but modified 
+to focus on recording the load averages, and for the different xpath
+syntax in the default OS X installation of xpath.
+
+monitis_create_load_monitor.sh
+
+Creates the external monitor used to record the load averages. Don't forget to
+set the API key and secret in the script, or export the values in your shell.
+
+    $ export APIKEY="your API key"
+    $ export SECRETKEY="your API secret"
+
+
+monitis_record_load.sh
+
+Gets the load averages from the uptime command, and records them to the
+specified Monitis external monitor. The API key and secret are specified as
+command line arguments.
+
+Examples
+
+    # create the monitor
+    $ ./monitis_create_load_monitor.sh
+    {"status":"ok","data":797}
+
+    # record the current load averages
+    $ ./monitis_record_load.sh -a <api_key> -s <api_secret> -i 797
+    {"status":"ok","data":null}
